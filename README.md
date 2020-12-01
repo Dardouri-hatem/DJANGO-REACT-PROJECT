@@ -8,12 +8,13 @@
 * cd backend
 * py manage.py runserver
 
-## Create Admin
-python manage.py createsuperuser
-*Username (leave blank to use 'admin'): admin
-*Email address: admin@xyz.com
-*Password: ********
-*Password (again): ********
+# Create Admin
+* python manage.py createsuperuser
+* Username (leave blank to use 'admin'): admin
+* Email address: admin@xyz.com
+* Password: ********
+* Password (again): ********
+<br/>
 Superuser created successfully.
 
 
