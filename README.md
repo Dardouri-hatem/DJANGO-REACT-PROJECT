@@ -1,11 +1,14 @@
 # DJANGO-REACT-PROJECT
 ### Install dependencies
-.cd backend
-.pipenv shell 
-.pipenv install
+* cd backend
+<br/>
+* pipenv shell 
+<br/>
+* pipenv install
 
 # Serve API on localhost:8000
-.cd backend
-.py manage.py runserver
+* cd backend
+<br/>
+* py manage.py runserver
 
 
