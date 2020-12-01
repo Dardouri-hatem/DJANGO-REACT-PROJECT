@@ -35,7 +35,6 @@ class OrderItemSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     order_items = serializers.SerializerMethodField()
     total = serializers.SerializerMethodField()
-    # coupon = serializers.SerializerMethodField()
 
     class Meta:
         model = Order
