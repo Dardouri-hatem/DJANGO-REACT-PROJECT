@@ -1,6 +1,6 @@
 # DJANGO-REACT-PROJECT
 ### Install dependencies
-.cd backend
+#cd backend
 .pipenv shell 
 .pipenv install
 
