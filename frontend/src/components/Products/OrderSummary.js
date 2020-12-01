@@ -5,22 +5,13 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 class OrderSummary extends Component {
-  state = { loading: false };
   componentDidMount() {
-    const fetchData = async () => {
-      try {
-        this.setState({ loading: true });
-        await this.props.fetchCart(this.props.user.id);
-        this.setState({ loading: false });
-      } catch (error) {}
-    };
-
-    fetchData();
+    this.props.fetchCart(this.props.user.id);
   }
 
   handleDelete = (id) => {
     this.props.DeleteItemFromCart(id);
-    // this.props.fetchCart(this.props.user.id);
+    this.props.fetchCart(this.props.user.id);
   };
 
   AddQuantityItem = (slug) => {
@@ -76,36 +67,28 @@ class OrderSummary extends Component {
   };
   render() {
     const { cart } = this.props;
-    const { loading } = this.state;
-    if (!cart)
+    const { loading } = this.props;
+    if (loading)
       return (
         <div>
-          {" "}
-          {loading ? (
-            <div className="d-flex justify-content-center mt-5">
-              <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-              <span className="sr-only">Loading...</span>
-            </div>
-          ) : (
-            <div >
-              <img
-                className="w-25 rounded mx-auto d-block"
-                src="https://webmobtuts.com/wp-content/uploads/2018/05/Creating-a-Shopping-Cart-With-Laravel.png"
-                alt=""
-              />
-              <h2 className="d-flex justify-content-center mt-2">
-                Your shoping cart is Empty
-              </h2>
-            </div>
-          )}
+          <div className="d-flex justify-content-center mt-5">
+            <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+            <span className="sr-only">Loading...</span>
+          </div>
         </div>
       );
     return (
       <div>
-        {loading ? (
-          <div className="d-flex justify-content-center mt-5  ">
-            <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-            <span className="sr-only">Loading...</span>
+        {!cart || cart.order_items.length === 0 ? (
+          <div>
+            <img
+              className="w-25 rounded mx-auto d-block"
+              src="https://webmobtuts.com/wp-content/uploads/2018/05/Creating-a-Shopping-Cart-With-Laravel.png"
+              alt=""
+            />
+            <h2 className="d-flex justify-content-center mt-2">
+              Your shoping cart is Empty
+            </h2>
           </div>
         ) : (
           <div className="card mt-1 container " style={{ width: "100%" }}>
@@ -113,7 +96,7 @@ class OrderSummary extends Component {
               <div className="table-responsive">
                 <table className="table product-table ">
                   <thead className="mdb-color lighten-5">
-                    <tr className='bg-light'>
+                    <tr className="bg-light">
                       <th></th>
                       <th className="font-weight-bold">
                         <strong>Product</strong>
@@ -144,15 +127,15 @@ class OrderSummary extends Component {
                                 className="img-fluid z-depth-0"
                               />
                             </th>
-                            <td >
+                            <td>
                               <h5 className="mt-3">
                                 <strong>{item.item.title}</strong>
                               </h5>
                               <p className="text-muted">{item.item.category}</p>
                             </td>
                             <td></td>
-                            <td className='pt-5'>{item.item.price}</td>
-                            <td className='pt-5'>
+                            <td className="pt-5">{item.item.price}</td>
+                            <td className="pt-5">
                               <i
                                 className="fa fa-minus mr-3"
                                 aria-hidden="true"
@@ -172,7 +155,7 @@ class OrderSummary extends Component {
                             <td className="font-weight-bold pt-5 ">
                               <strong>{item.final_price}</strong>
                             </td>
-                            <td className='pt-5'>
+                            <td className="pt-5">
                               <span
                                 className="btn btn-danger"
                                 onClick={() => this.handleDelete(item.id)}
@@ -223,6 +206,7 @@ class OrderSummary extends Component {
 const mapStateToProps = (state) => ({
   user: state.account.user,
   cart: state.product.cart,
+  loading: state.product.loading,
 });
 export default connect(mapStateToProps, { fetchCart, DeleteItemFromCart })(
   OrderSummary

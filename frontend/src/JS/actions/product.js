@@ -1,8 +1,15 @@
-import { CART_SUCCESS, CART_FAIL, DELETE_SUCCESS,GET_PAYMENT_SUCCESS} from "../constants";
+import {
+  CART_SUCCESS,
+  CART_FAIL,
+  DELETE_SUCCESS,
+  GET_PAYMENT_SUCCESS,
+  START_CART,
+} from "../constants";
 import axios from "axios";
 // import { returnErrors, clearErrors } from "./errors";
 
 export const fetchCart = (user_id) => async (dispatch) => {
+  dispatch({ type: START_CART });
   if (localStorage.getItem("access")) {
     const config = {
       headers: {
@@ -35,6 +42,9 @@ export const fetchCart = (user_id) => async (dispatch) => {
 };
 
 export const DeleteItemFromCart = (id) => async (dispatch) => {
+  dispatch({
+    type: START_CART,
+  });
   if (localStorage.getItem("access")) {
     const config = {
       headers: {
@@ -79,7 +89,7 @@ export const fetchPayment = () => async (dispatch) => {
       config
     );
     dispatch({
-      type : GET_PAYMENT_SUCCESS,
+      type: GET_PAYMENT_SUCCESS,
       payload: res.data.results,
     });
   } catch (error) {}
