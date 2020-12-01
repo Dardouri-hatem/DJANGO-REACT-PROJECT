@@ -25,10 +25,6 @@ class OrderItemAdmin(admin.ModelAdmin):
 class OrderAdmin(admin.ModelAdmin):
     list_display = ['user',
                     'ordered',
-                    'being_delivered',
-                    'received',
-                    'refund_requested',
-                    'refund_granted',
                     'shipping_address',
                     'payment', ]
     list_display_links = [
@@ -36,11 +32,7 @@ class OrderAdmin(admin.ModelAdmin):
         'shipping_address',
         'payment',
     ]
-    list_filter = ['ordered',
-                   'being_delivered',
-                   'received',
-                   'refund_requested',
-                   'refund_granted']
+    list_filter = ['ordered', ]
     search_fields = [
         'user__username',
         'ref_code'
