@@ -6,6 +6,8 @@
 
 # Serve API on localhost:8000
 * cd backend
+* py manage.py makemigrations
+* py manage.py migrate²
 * py manage.py runserver
 
 # Create Admin
