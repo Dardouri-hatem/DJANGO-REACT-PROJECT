@@ -1,0 +1,63 @@
+.card_product {
+  border-top: none;
+  box-shadow: 6px 4px 7px -4px rgba(136, 138, 138, 1);
+  margin: 10px;
+}
+.card-img-top {
+  width: 110%;
+  justify-content: center;
+  height: 210px;
+}
+.view {
+  display: flex;
+  justify-content: center;
+}
+.card-footer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.listings__listings {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card_product_list {
+  max-width: 310px;
+}
+
+.solde-price{
+  text-decoration: line-through;
+}
+
+/* Order Summary */
+.img-fluid {
+  width: 300px;
+  height: 200px;
+}
+
+/* ProductDetails */
+.img-main {
+  width: 400px;
+  height: 400px;
+  border: 0.5px solid rgb(212, 210, 210);
+}
+.img-detail {
+  width: 200px;
+  height: 200px;
+  border: 0.5px solid rgb(212, 210, 210);
+  margin: 1px;
+}
+
+/* Order Summary */
+.titleTab{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.center{
+  align-content: center;
+  
+}
